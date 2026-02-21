@@ -159,28 +159,13 @@ a:hover { text-decoration: underline; }
 .project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
 .project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
 
-/* ─── AI Corner — dark zone ─── */
-.section-dark {
-  background: #1E1C19;
-  margin-left: -40px;
-  margin-right: -40px;
-  padding: 80px 40px 80px;
-  margin-bottom: 0;
-}
-.section-dark .section-title {
-  color: rgba(255,255,255,0.92);
-}
-.section-dark .section-title::after {
-  background: rgba(255,255,255,0.12);
-}
-
 .corner-block { margin-bottom: 52px; }
 .corner-heading {
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-3);
   margin-bottom: 20px;
 }
 
@@ -198,17 +183,17 @@ a:hover { text-decoration: underline; }
 .person-card {
   flex-shrink: 0;
   width: 210px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.09);
+  background: #fff;
   border-radius: 10px;
   padding: 20px 22px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
   display: block;
 }
 .person-card:hover {
   transform: translateY(-3px);
-  background: rgba(255,255,255,0.10);
+  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
   text-decoration: none;
 }
 .person-handle {
@@ -220,13 +205,13 @@ a:hover { text-decoration: underline; }
 }
 .person-name {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-3);
   margin-bottom: 12px;
   display: block;
 }
 .person-why {
   font-size: 0.81rem;
-  color: rgba(255,255,255,0.65);
+  color: var(--text-2);
   line-height: 1.62;
 }
 
@@ -239,11 +224,11 @@ a:hover { text-decoration: underline; }
 }
 .writing-list a {
   font-size: 0.88rem;
-  color: rgba(255,255,255,0.78);
+  color: var(--text);
   line-height: 1.5;
   flex: 1;
 }
-.writing-list a:hover { color: var(--accent); text-decoration: none; }
+.writing-list a:hover { color: var(--accent); }
 .corner-source {
   font-size: 0.58rem;
   color: var(--accent);
@@ -252,7 +237,7 @@ a:hover { text-decoration: underline; }
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
-  background: rgba(13,155,114,0.18);
+  background: var(--accent-light);
   padding: 2px 7px;
   border-radius: 3px;
 }
@@ -266,16 +251,16 @@ a:hover { text-decoration: underline; }
 .reading-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.09);
+  background: #fff;
   border-radius: 10px;
   padding: 22px 24px;
   text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .reading-card:hover {
   transform: translateY(-3px);
-  background: rgba(255,255,255,0.10);
+  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
   text-decoration: none;
 }
 .reading-meta {
@@ -283,20 +268,20 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-3);
   margin-bottom: 10px;
 }
 .reading-title {
   font-family: var(--ff-display);
   font-size: 1rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.92);
+  color: var(--text);
   line-height: 1.35;
   margin-bottom: 12px;
 }
 .reading-take {
   font-size: 0.84rem;
-  color: rgba(255,255,255,0.62);
+  color: var(--text-2);
   line-height: 1.68;
   flex: 1;
   margin-bottom: 16px;
@@ -306,7 +291,7 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.30);
+  color: var(--text-3);
   display: block;
   margin-bottom: 5px;
 }
@@ -362,21 +347,11 @@ a:hover { text-decoration: underline; }
   transform: translateY(0);
 }
 
-/* ─── Footer — sits inside dark zone ─── */
-.footer {
-  background: #1E1C19;
-  margin-left: -40px;
-  margin-right: -40px;
-  padding: 48px 40px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.28); }
+/* ─── Footer ─── */
+.footer { padding: 64px 0 140px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.footer-copy { font-size: 0.73rem; color: var(--text-3); }
 .social-icons { display: flex; gap: 18px; align-items: center; }
-.social-icon { color: rgba(255,255,255,0.35); display: flex; align-items: center; transition: color 0.18s; }
+.social-icon { color: var(--text-3); display: flex; align-items: center; transition: color 0.18s; }
 .social-icon:hover { color: var(--accent); text-decoration: none; }
 </style>
 </head>
@@ -442,8 +417,8 @@ a:hover { text-decoration: underline; }
   </div>
 </section>
 
-<!-- ─── Lisa's AI Corner — dark zone ─── -->
-<section class="section section-dark" id="ai-corner">
+<!-- ─── Lisa's AI Corner ─── -->
+<section class="section" id="ai-corner">
   <h2 class="section-title">Lisa's AI Corner</h2>
 
   <!-- People I Follow — horizontal scroll -->
