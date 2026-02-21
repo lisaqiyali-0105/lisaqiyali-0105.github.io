@@ -46,7 +46,7 @@ body {
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
-  padding: 80px 40px 140px;
+  padding: 80px 40px 0;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -70,24 +70,17 @@ a:hover { text-decoration: underline; }
 }
 .hero-title {
   font-family: var(--ff-display);
-  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-size: clamp(3.4rem, 8vw, 5.2rem);
   font-weight: 300;
   line-height: 1.04;
   color: var(--text);
-  margin-bottom: 22px;
-  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
 }
 .hero-roles {
   font-size: 0.82rem;
   color: var(--text-3);
-  margin-bottom: 14px;
   letter-spacing: 0.02em;
-}
-.hero-sub {
-  font-size: 0.98rem;
-  color: var(--text-2);
-  line-height: 1.72;
-  max-width: 400px;
 }
 
 /* ─── Hero Photo — soft vignette fade, no hard edges ─── */
@@ -148,11 +141,11 @@ a:hover { text-decoration: underline; }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .project-card {
   display: block;
-  background: var(--surface);
+  background: #fff;
   border-radius: 10px;
   padding: 28px;
   text-decoration: none;
-  box-shadow: 0 2px 16px rgba(30,28,25,0.06), 0 1px 4px rgba(30,28,25,0.04);
+  box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 .project-card:hover {
@@ -166,14 +159,28 @@ a:hover { text-decoration: underline; }
 .project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
 .project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
 
-/* ─── AI Corner ─── */
+/* ─── AI Corner — dark zone ─── */
+.section-dark {
+  background: #1E1C19;
+  margin-left: -40px;
+  margin-right: -40px;
+  padding: 80px 40px 80px;
+  margin-bottom: 0;
+}
+.section-dark .section-title {
+  color: rgba(255,255,255,0.92);
+}
+.section-dark .section-title::after {
+  background: rgba(255,255,255,0.12);
+}
+
 .corner-block { margin-bottom: 52px; }
 .corner-heading {
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: rgba(255,255,255,0.35);
   margin-bottom: 20px;
 }
 
@@ -191,17 +198,17 @@ a:hover { text-decoration: underline; }
 .person-card {
   flex-shrink: 0;
   width: 210px;
-  background: var(--surface);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.09);
   border-radius: 10px;
   padding: 20px 22px;
-  box-shadow: 0 2px 14px rgba(30,28,25,0.055), 0 1px 3px rgba(30,28,25,0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
   text-decoration: none;
   display: block;
 }
 .person-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
+  background: rgba(255,255,255,0.10);
   text-decoration: none;
 }
 .person-handle {
@@ -213,13 +220,13 @@ a:hover { text-decoration: underline; }
 }
 .person-name {
   font-size: 0.72rem;
-  color: var(--text-3);
+  color: rgba(255,255,255,0.35);
   margin-bottom: 12px;
   display: block;
 }
 .person-why {
   font-size: 0.81rem;
-  color: var(--text-2);
+  color: rgba(255,255,255,0.65);
   line-height: 1.62;
 }
 
@@ -232,11 +239,11 @@ a:hover { text-decoration: underline; }
 }
 .writing-list a {
   font-size: 0.88rem;
-  color: var(--text);
+  color: rgba(255,255,255,0.78);
   line-height: 1.5;
   flex: 1;
 }
-.writing-list a:hover { color: var(--accent); }
+.writing-list a:hover { color: var(--accent); text-decoration: none; }
 .corner-source {
   font-size: 0.58rem;
   color: var(--accent);
@@ -245,7 +252,7 @@ a:hover { text-decoration: underline; }
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
-  background: var(--accent-light);
+  background: rgba(13,155,114,0.18);
   padding: 2px 7px;
   border-radius: 3px;
 }
@@ -259,16 +266,16 @@ a:hover { text-decoration: underline; }
 .reading-card {
   display: flex;
   flex-direction: column;
-  background: var(--surface);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.09);
   border-radius: 10px;
   padding: 22px 24px;
   text-decoration: none;
-  box-shadow: 0 2px 14px rgba(30,28,25,0.055), 0 1px 3px rgba(30,28,25,0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 .reading-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
+  background: rgba(255,255,255,0.10);
   text-decoration: none;
 }
 .reading-meta {
@@ -276,20 +283,20 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: rgba(255,255,255,0.35);
   margin-bottom: 10px;
 }
 .reading-title {
   font-family: var(--ff-display);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--text);
+  color: rgba(255,255,255,0.92);
   line-height: 1.35;
   margin-bottom: 12px;
 }
 .reading-take {
   font-size: 0.84rem;
-  color: var(--text-2);
+  color: rgba(255,255,255,0.62);
   line-height: 1.68;
   flex: 1;
   margin-bottom: 16px;
@@ -299,7 +306,7 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: rgba(255,255,255,0.30);
   display: block;
   margin-bottom: 5px;
 }
@@ -330,9 +337,9 @@ a:hover { text-decoration: underline; }
   right: -60px;
   transform: translateY(-50%);
   background: radial-gradient(ellipse at center,
-    rgba(13,155,114,0.10) 0%,
-    rgba(13,155,114,0.04) 45%,
-    rgba(249,246,241,0) 70%);
+    rgba(13,155,114,0.22) 0%,
+    rgba(13,155,114,0.08) 45%,
+    rgba(249,246,241,0) 72%);
   animation: blobMorph 14s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -355,11 +362,21 @@ a:hover { text-decoration: underline; }
   transform: translateY(0);
 }
 
-/* ─── Footer ─── */
-.footer { padding-top: 64px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.footer-copy { font-size: 0.73rem; color: var(--text-3); }
+/* ─── Footer — sits inside dark zone ─── */
+.footer {
+  background: #1E1C19;
+  margin-left: -40px;
+  margin-right: -40px;
+  padding: 48px 40px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.28); }
 .social-icons { display: flex; gap: 18px; align-items: center; }
-.social-icon { color: var(--text-3); display: flex; align-items: center; transition: color 0.18s; }
+.social-icon { color: rgba(255,255,255,0.35); display: flex; align-items: center; transition: color 0.18s; }
 .social-icon:hover { color: var(--accent); text-decoration: none; }
 </style>
 </head>
@@ -372,7 +389,6 @@ a:hover { text-decoration: underline; }
     <p class="hero-label">Lisa Qiya Li</p>
     <h1 class="hero-title">I build things<br>to learn things.</h1>
     <p class="hero-roles">AI PM at AlphaSense · ex-Morgan Stanley IBD</p>
-    <p class="hero-sub">Closing the gap between product thinking and technical execution — one project at a time.</p>
   </div>
   <div class="hero-photo-wrap">
     <img class="hero-photo" src="lisa-headshot.jpeg" alt="Lisa Qiya Li">
@@ -426,8 +442,8 @@ a:hover { text-decoration: underline; }
   </div>
 </section>
 
-<!-- ─── Lisa's AI Corner ─── -->
-<section class="section" id="ai-corner">
+<!-- ─── Lisa's AI Corner — dark zone ─── -->
+<section class="section section-dark" id="ai-corner">
   <h2 class="section-title">Lisa's AI Corner</h2>
 
   <!-- People I Follow — horizontal scroll -->
@@ -563,7 +579,16 @@ document.querySelectorAll('.section-title, .about-prose, .corner-heading, .foote
   el.classList.add('reveal');
 });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// Only observe elements below the fold — skip anything already visible on load
+const viewportH = window.innerHeight;
+document.querySelectorAll('.reveal').forEach(el => {
+  const top = el.getBoundingClientRect().top;
+  if (top > viewportH * 0.85) {
+    revealObserver.observe(el);
+  } else {
+    el.classList.add('visible'); // already in view, show immediately
+  }
+});
 
 const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.project-card');
