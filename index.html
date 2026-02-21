@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisa Qiya Li — Builder</title>
+
+<!-- SEO -->
+<meta name="description" content="Lisa Qiya Li — AI PM, builder, closing the gap between product thinking and technical execution.">
+<link rel="canonical" href="https://lisaqiyali-0105.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lisaqiyali-0105.github.io/">
+<meta property="og:title" content="Lisa Qiya Li — Builder">
+<meta property="og:description" content="I build things to learn things. AI PM at AlphaSense · ex-Morgan Stanley IBD.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ─── Tokens ─── */
+:root {
+  --bg: #F9F6F1;
+  --surface: #F2EDE6;
+  --border: #E0D9CE;
+  --text: #1E1C19;
+  --text-2: #5C5852;
+  --text-3: #9E9890;
+  --accent: #0D9B72;
+  --accent-light: rgba(13,155,114,0.08);
+  --ff-display: 'Fraunces', Georgia, serif;
+  --ff-body: 'Instrument Sans', system-ui, sans-serif;
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 40px 140px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Hero ─── */
+.hero {
+  margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.hero-text { flex: 1; min-width: 0; }
+.hero-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.04;
+  color: var(--text);
+  margin-bottom: 22px;
+  letter-spacing: -0.025em;
+}
+.hero-roles {
+  font-size: 0.82rem;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.hero-sub {
+  font-size: 0.98rem;
+  color: var(--text-2);
+  line-height: 1.72;
+  max-width: 400px;
+}
+
+/* ─── Hero Photo — soft vignette fade, no hard edges ─── */
+.hero-photo-wrap { flex-shrink: 0; }
+.hero-photo {
+  width: 196px;
+  height: 196px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 14%;
+  display: block;
+  box-shadow:
+    0 6px 24px rgba(30,28,25,0.13),
+    0 2px 8px rgba(30,28,25,0.08);
+}
+
+/* ─── About ─── */
+.about-prose p {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.82;
+  max-width: 580px;
+}
+.about-prose p + p { margin-top: 22px; }
+.about-prose strong { color: var(--text); font-weight: 600; }
+
+/* ─── Section Architecture ─── */
+/* Sections breathe through space, not lines */
+.section { margin-bottom: 92px; }
+
+/* Editorial section title: italic Fraunces + hairline rule extending right */
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 48px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── Filters ─── */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.filters-hidden { display: none; }
+.filter-btn { padding: 6px 14px; border: 1px solid var(--border); background: transparent; border-radius: 100px; font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-2); cursor: pointer; transition: all 0.15s; }
+.filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ─── Project Cards — shadow instead of border, feels lighter ─── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.project-card {
+  display: block;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 28px;
+  text-decoration: none;
+  box-shadow: 0 2px 16px rgba(30,28,25,0.06), 0 1px 4px rgba(30,28,25,0.04);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,28,25,0.11), 0 4px 10px rgba(30,28,25,0.06);
+  text-decoration: none;
+}
+.project-meta { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.project-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 3px 8px; border-radius: 3px; }
+.project-title { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 500; color: var(--text); margin-bottom: 10px; line-height: 1.25; }
+.project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
+.project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
+
+/* ─── AI Corner ─── */
+.corner-block { margin-bottom: 52px; }
+.corner-heading {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+
+/* People I Follow — horizontal scroll cards */
+.people-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.people-scroll::-webkit-scrollbar { display: none; }
+
+.person-card {
+  flex-shrink: 0;
+  width: 210px;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 14px rgba(30,28,25,0.055), 0 1px 3px rgba(30,28,25,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: block;
+}
+.person-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
+  text-decoration: none;
+}
+.person-handle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 3px;
+}
+.person-name {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  display: block;
+}
+.person-why {
+  font-size: 0.81rem;
+  color: var(--text-2);
+  line-height: 1.62;
+}
+
+/* My Writing — clean stacked list, no borders */
+.writing-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.writing-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.writing-list a {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+  flex: 1;
+}
+.writing-list a:hover { color: var(--accent); }
+.corner-source {
+  font-size: 0.58rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: var(--accent-light);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+/* ─── Reading Gallery ─── */
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+.reading-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 22px 24px;
+  text-decoration: none;
+  box-shadow: 0 2px 14px rgba(30,28,25,0.055), 0 1px 3px rgba(30,28,25,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.reading-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(30,28,25,0.10), 0 2px 6px rgba(30,28,25,0.06);
+  text-decoration: none;
+}
+.reading-meta {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.reading-title {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.reading-take {
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.68;
+  flex: 1;
+  margin-bottom: 16px;
+}
+.reading-take-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: block;
+  margin-bottom: 5px;
+}
+.reading-link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+
+/* ─── Footer ─── */
+.footer { padding-top: 64px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.footer-copy { font-size: 0.73rem; color: var(--text-3); }
+.social-icons { display: flex; gap: 18px; align-items: center; }
+.social-icon { color: var(--text-3); display: flex; align-items: center; transition: color 0.18s; }
+.social-icon:hover { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ─── Hero ─── -->
+<header class="hero">
+  <div class="hero-text">
+    <p class="hero-label">Lisa Qiya Li</p>
+    <h1 class="hero-title">I build things<br>to learn things.</h1>
+    <p class="hero-roles">AI PM at AlphaSense · ex-Morgan Stanley IBD</p>
+    <p class="hero-sub">Closing the gap between product thinking and technical execution — one project at a time.</p>
+  </div>
+  <div class="hero-photo-wrap">
+    <img class="hero-photo" src="lisa-headshot.jpeg" alt="Lisa Qiya Li">
+  </div>
+</header>
+
+<!-- ─── About ─── -->
+<section class="section" id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about-prose">
+    <p>I majored in history — which is maybe the most honest thing I can say about how I think. I'm drawn to patterns across disciplines, not just depth in one. My career has reflected that: investment banking at Morgan Stanley taught me how companies are built and valued; an MBA that included stints with the <strong>Boston Ballet</strong> and <strong>Christie's</strong> fed an appetite for <em>跨界</em> — the art of working across boundaries — that I've never been able to quiet.</p>
+    <p>The jump to product was the natural extension of all this. Now I'm an AI PM at <strong>AlphaSense</strong>, thinking about how financial professionals find and use information to make better decisions. Outside of work, I build — a design vocabulary course for PMs, an ADHD productivity tracker, a budget tool, this portfolio. I used to assume "building things" was a credential you needed before you were allowed to start. Turns out it's the other way around. You learn by showing up, and the generalist edge is knowing which rooms to walk into next.</p>
+  </div>
+</section>
+
+<!-- ─── Projects ─── -->
+<section class="section" id="projects">
+  <h2 class="section-title">Projects</h2>
+
+  <!-- Filter bar — hidden via CSS until 3+ projects exist. Remove 'filters-hidden' class to enable. -->
+  <div class="filters filters-hidden" id="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <a class="project-card" href="https://lisaqiyali-0105.github.io/design-language-course/" target="_blank" rel="noopener" data-tags="design,learning">
+      <div class="project-card-inner">
+        <div class="project-meta">
+          <span class="project-tag">design</span>
+          <span class="project-tag">learning</span>
+        </div>
+        <h3 class="project-title">The Language of Design</h3>
+        <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
+        <span class="project-link">Explore →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── Lisa's AI Corner ─── -->
+<section class="section" id="ai-corner">
+  <h2 class="section-title">Lisa's AI Corner</h2>
+
+  <!-- People I Follow — horizontal scroll -->
+  <div class="corner-block">
+    <p class="corner-heading">People I Follow</p>
+    <div class="people-scroll">
+
+      <a class="person-card" href="https://x.com/joshwoodward" target="_blank" rel="noopener">
+        <span class="person-handle">@joshwoodward</span>
+        <span class="person-name">Josh Woodward</span>
+        <p class="person-why">Head of Google Labs — AI product strategy at the frontier</p>
+      </a>
+
+      <a class="person-card" href="https://x.com/karpathy" target="_blank" rel="noopener">
+        <span class="person-handle">@karpathy</span>
+        <span class="person-name">Andrej Karpathy</span>
+        <p class="person-why">Ex-OpenAI/Tesla — teaches AI from first principles, makes the hard stuff accessible</p>
+      </a>
+
+      <a class="person-card" href="https://x.com/raizamrtn" target="_blank" rel="noopener">
+        <span class="person-handle">@raizamrtn</span>
+        <span class="person-name">Raiza Martin</span>
+        <p class="person-why">Creator of Huxe (AI-generated personalized podcast) and NotebookLM</p>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- My Writing — unified list, no sub-section borders -->
+  <div class="corner-block">
+    <p class="corner-heading">My Writing</p>
+    <ul class="writing-list">
+      <li>
+        <a href="https://www.linkedin.com/posts/lisaqiyali_ai-can-now-build-everything-but-i-bet-you-activity-7430086403079966720-C55d" target="_blank" rel="noopener">AI can now build everything. But I bet you can tell when AI built it...</a>
+        <span class="corner-source">LinkedIn</span>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/posts/lisaqiyali_i-just-published-my-first-claude-code-skill-share-7428281452989124608-cWYR" target="_blank" rel="noopener">I just published my first Claude Code skill...</a>
+        <span class="corner-source">LinkedIn</span>
+      </li>
+      <li>
+        <a href="https://lisaqiyali.substack.com/p/i-procrastinated-on-claude-code-for" target="_blank" rel="noopener">I Procrastinated on Claude Code for 4 Months Because of One Word: "Code"</a>
+        <span class="corner-source">Substack</span>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ─── What I'm Consuming ─── -->
+<!--
+  HOW TO ADD A CARD:
+  Drop Lisa a link → she pastes it here → Claude writes the one-liner.
+
+  Template:
+  <a class="reading-card" href="URL" target="_blank" rel="noopener">
+    <span class="reading-meta">SOURCE · recently</span>
+    <span class="reading-title">Article title here</span>
+    <p class="reading-take">"Lisa's one-liner on why this matters."</p>
+    <span class="reading-link">Read →</span>
+  </a>
+-->
+<section class="section" id="consuming">
+  <h2 class="section-title">What I'm Consuming</h2>
+  <div class="reading-grid">
+
+    <a class="reading-card" href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">
+      <span class="reading-meta">Medium · recently</span>
+      <span class="reading-title">I Accidentally Made Claude 45% Smarter. Here's How.</span>
+      <p class="reading-take"><span class="reading-take-label">my take</span>Turns out Claude responds to stakes and roles the same way people do. Small prompt tweaks, big output difference — no technical background needed.</p>
+      <span class="reading-link">Read →</span>
+    </a>
+
+    <a class="reading-card" href="https://writing.nikunjk.com/p/token-anxiety" target="_blank" rel="noopener">
+      <span class="reading-meta">Substack · recently</span>
+      <span class="reading-title">Token Anxiety</span>
+      <p class="reading-take"><span class="reading-take-label">my take</span>He replaced Netflix with Claude Code at night and I felt completely called out. Token anxiety is the new primetime — and the people who lean into it are building an edge that compounds quietly.</p>
+      <span class="reading-link">Read →</span>
+    </a>
+
+    <!-- ✦ drop Lisa a link to generate the next card ✦ -->
+
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer class="footer">
+  <div class="social-icons">
+
+    <!-- GitHub -->
+    <a class="social-icon" href="https://github.com/lisaqiyali-0105" target="_blank" rel="noopener" title="GitHub">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a class="social-icon" href="https://linkedin.com/in/lisaqiyali" target="_blank" rel="noopener" title="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+
+    <!-- Twitter / X -->
+    <a class="social-icon" href="https://x.com/lisaqiyali" target="_blank" rel="noopener" title="Twitter / X">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+
+    <!-- Substack -->
+    <a class="social-icon" href="https://lisaqiyali.substack.com" target="_blank" rel="noopener" title="Substack">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+    </a>
+
+  </div>
+  <p class="footer-copy">© <span id="footer-year"></span> Lisa Qiya Li</p>
+</footer>
+
+<script>
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+
+// Build filter buttons dynamically from tags
+const allTags = new Set();
+cards.forEach(card => card.dataset.tags.split(',').forEach(t => allTags.add(t.trim())));
+const filtersEl = document.getElementById('filters');
+allTags.forEach(tag => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.dataset.filter = tag;
+  btn.textContent = tag;
+  filtersEl.appendChild(btn);
+});
+
+// Filter logic
+filtersEl.addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const filter = e.target.dataset.filter;
+  cards.forEach(card => {
+    const tags = card.dataset.tags.split(',').map(t => t.trim());
+    card.style.display = (filter === 'all' || tags.includes(filter)) ? 'block' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
