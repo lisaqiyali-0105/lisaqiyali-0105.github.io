@@ -312,6 +312,23 @@ a:hover { text-decoration: underline; }
   align-self: flex-end;
 }
 
+/* ─── Scroll Reveal ─── */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero { animation: heroIn 0.9s ease both; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── Footer ─── */
 .footer { padding-top: 64px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .footer-copy { font-size: 0.73rem; color: var(--text-3); }
@@ -483,6 +500,31 @@ a:hover { text-decoration: underline; }
 
 <script>
 document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+// ─── Scroll Reveal ───
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+// Staggered card groups — each child gets an increasing delay
+document.querySelectorAll('.projects-grid, .people-scroll, .reading-grid, .writing-list').forEach(group => {
+  Array.from(group.children).forEach((child, i) => {
+    child.classList.add('reveal');
+    child.style.transitionDelay = `${i * 0.1}s`;
+  });
+});
+
+// Single-element reveals
+document.querySelectorAll('.section-title, .about-prose, .corner-heading, .footer').forEach(el => {
+  el.classList.add('reveal');
+});
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.project-card');
