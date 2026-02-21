@@ -312,6 +312,32 @@ a:hover { text-decoration: underline; }
   align-self: flex-end;
 }
 
+/* ─── Hero Blob ─── */
+@keyframes blobMorph {
+  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%  { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; }
+  75%  { border-radius: 40% 60% 60% 40% / 60% 30% 40% 70%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+.hero { position: relative; }
+.hero-text, .hero-photo-wrap { position: relative; z-index: 1; }
+.hero-blob {
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  top: 50%;
+  right: -60px;
+  transform: translateY(-50%);
+  background: radial-gradient(ellipse at center,
+    rgba(13,155,114,0.10) 0%,
+    rgba(13,155,114,0.04) 45%,
+    rgba(249,246,241,0) 70%);
+  animation: blobMorph 14s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ─── Scroll Reveal ─── */
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -341,6 +367,7 @@ a:hover { text-decoration: underline; }
 
 <!-- ─── Hero ─── -->
 <header class="hero">
+  <div class="hero-blob" aria-hidden="true"></div>
   <div class="hero-text">
     <p class="hero-label">Lisa Qiya Li</p>
     <h1 class="hero-title">I build things<br>to learn things.</h1>
