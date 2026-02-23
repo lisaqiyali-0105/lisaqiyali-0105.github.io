@@ -31,6 +31,9 @@
   --text-3: #9E9890;
   --accent: #0D9B72;
   --accent-light: rgba(13,155,114,0.08);
+  --card-bg: #FDFCFA;
+  --card-bg-warm: #F7F4EF;
+  --accent-border: rgba(13,155,114,0.45);
   --ff-display: 'Fraunces', Georgia, serif;
   --ff-body: 'Instrument Sans', system-ui, sans-serif;
 }
@@ -83,7 +86,7 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.02em;
 }
 
-/* ─── Hero Photo — soft vignette fade, no hard edges ─── */
+/* ─── Hero Photo — soft vignette fade, teal ring anchors to blob ─── */
 .hero-photo-wrap { flex-shrink: 0; }
 .hero-photo {
   width: 196px;
@@ -95,6 +98,8 @@ a:hover { text-decoration: underline; }
   box-shadow:
     0 6px 24px rgba(30,28,25,0.13),
     0 2px 8px rgba(30,28,25,0.08);
+  outline: 2px solid rgba(13,155,114,0.3);
+  outline-offset: 5px;
 }
 
 /* ─── About ─── */
@@ -131,33 +136,98 @@ a:hover { text-decoration: underline; }
   background: var(--border);
 }
 
+/* ─── Content Tabs ─── */
+.content-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.content-tab {
+  padding: 6px 18px;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 100px;
+  font-family: var(--ff-body);
+  font-size: 0.78rem;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.content-tab:hover { border-color: var(--accent); color: var(--accent); }
+.content-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tab-panel[hidden] { display: none; }
+
 /* ─── Filters ─── */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
 .filters-hidden { display: none; }
 .filter-btn { padding: 6px 14px; border: 1px solid var(--border); background: transparent; border-radius: 100px; font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-2); cursor: pointer; transition: all 0.15s; }
 .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* ─── Project Cards — shadow instead of border, feels lighter ─── */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+/* ─── Project Cards ─── */
+/* Featured layout: first card gets full-width 2-column treatment */
+.projects-grid { display: flex; flex-direction: column; gap: 16px; }
+
 .project-card {
   display: block;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 28px;
   text-decoration: none;
+  border-left: 3px solid var(--accent);
   box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
-  transition: transform 0.24s ease, box-shadow 0.24s ease;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-left-width 0.2s ease;
 }
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(30,28,25,0.11), 0 4px 10px rgba(30,28,25,0.06);
+  border-left-width: 6px;
   text-decoration: none;
 }
+.project-card:hover .project-link {
+  transform: translateX(5px);
+}
+
+/* Featured first card: 2-column grid with accent panel */
+.project-card:first-child {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  padding: 36px;
+}
+
+.project-card-accent {
+  width: 160px;
+  background: var(--accent-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.project-card-stat {
+  font-family: var(--ff-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.1;
+}
+.project-card-stat span {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
 .project-meta { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
 .project-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 3px 8px; border-radius: 3px; }
 .project-title { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 500; color: var(--text); margin-bottom: 10px; line-height: 1.25; }
 .project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
-.project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
+.project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; display: inline-block; transition: transform 0.2s ease; }
 
 .corner-block { margin-bottom: 52px; }
 .corner-heading {
@@ -169,21 +239,15 @@ a:hover { text-decoration: underline; }
   margin-bottom: 20px;
 }
 
-/* People I Follow — horizontal scroll cards */
-.people-scroll {
-  display: flex;
+/* People I Follow — typographic grid, no horizontal scroll */
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
-.people-scroll::-webkit-scrollbar { display: none; }
 
 .person-card {
-  flex-shrink: 0;
-  width: 210px;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 20px 22px;
   box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
@@ -251,7 +315,7 @@ a:hover { text-decoration: underline; }
 .reading-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 22px 24px;
   text-decoration: none;
@@ -270,6 +334,9 @@ a:hover { text-decoration: underline; }
   text-transform: uppercase;
   color: var(--text-3);
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .reading-title {
   font-family: var(--ff-display);
@@ -285,15 +352,6 @@ a:hover { text-decoration: underline; }
   line-height: 1.68;
   flex: 1;
   margin-bottom: 16px;
-}
-.reading-take-label {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  display: block;
-  margin-bottom: 5px;
 }
 .reading-link {
   font-size: 0.75rem;
@@ -348,7 +406,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* ─── Footer ─── */
-.footer { padding: 64px 0 140px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.footer { padding: 48px 0 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .footer-copy { font-size: 0.73rem; color: var(--text-3); }
 .social-icons { display: flex; gap: 18px; align-items: center; }
 .social-icon { color: var(--text-3); display: flex; align-items: center; transition: color 0.18s; }
@@ -363,7 +421,7 @@ a:hover { text-decoration: underline; }
   <div class="hero-text">
     <p class="hero-label">Lisa Qiya Li</p>
     <h1 class="hero-title">I build things<br>to learn things.</h1>
-    <p class="hero-roles">AI PM at AlphaSense · ex-Morgan Stanley IBD</p>
+
   </div>
   <div class="hero-photo-wrap">
     <img class="hero-photo" src="lisa-headshot.jpeg" alt="Lisa Qiya Li">
@@ -372,10 +430,10 @@ a:hover { text-decoration: underline; }
 
 <!-- ─── About ─── -->
 <section class="section" id="about">
-  <h2 class="section-title">About</h2>
+  <h2 class="section-title">About Me</h2>
   <div class="about-prose">
-    <p>History major. Classical pianist. Morgan Stanley investment banker. An MBA that somehow wandered through the Boston Ballet, Christie's, and now — AI product manager.<br>The thread through all of it: I've never fit neatly in a box — and I've stopped trying.</p>
-    <p>Building things is the latest expression of that — a design vocabulary course for PMs, an ADHD productivity tracker, a budget tool, this portfolio. I used to assume "building things" was a credential you needed before you were allowed to start. Turns out it's the other way around. You learn by showing up, and the generalist edge is knowing which rooms to walk into next.</p>
+    <p>History major. Concert pianist. Morgan Stanley investment banker. An MBA who somehow wandered through the Boston Ballet, Christie's, and now — AI product manager. The thread through all of it? I'm a generalist who never fit neatly in a box, and I've stopped trying.</p>
+    <p>Building things is the latest expression of that. I used to assume "building things" was a credential you needed before you were allowed to start. Turns out in the age of AI, it's the other way around. I learn by showing up, and my generalist edge is knowing which rooms to walk into next. 🤖</p>
   </div>
 </section>
 
@@ -400,6 +458,9 @@ a:hover { text-decoration: underline; }
         <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
         <span class="project-link">Explore →</span>
       </div>
+      <div class="project-card-accent" aria-hidden="true">
+        <div class="project-card-stat">10<span>modules</span></div>
+      </div>
     </a>
 
     <a class="project-card" href="https://do-not-answer.netlify.app/" target="_blank" rel="noopener" data-tags="creative,gift">
@@ -421,10 +482,10 @@ a:hover { text-decoration: underline; }
 <section class="section" id="ai-corner">
   <h2 class="section-title">Lisa's AI Corner</h2>
 
-  <!-- People I Follow — horizontal scroll -->
+  <!-- People I Follow — 3-column grid -->
   <div class="corner-block">
     <p class="corner-heading">People I Follow</p>
-    <div class="people-scroll">
+    <div class="people-grid">
 
       <a class="person-card" href="https://x.com/joshwoodward" target="_blank" rel="noopener">
         <span class="person-handle">@joshwoodward</span>
@@ -450,32 +511,55 @@ a:hover { text-decoration: underline; }
   <!-- What I'm Consuming — reading gallery -->
   <!-- HOW TO ADD A CARD: Drop Lisa a link → Claude writes the one-liner -->
   <div class="corner-block">
-    <p class="corner-heading">What I'm Consuming</p>
-    <div class="reading-grid">
+    <p class="corner-heading">Content I'm Consuming</p>
 
-      <a class="reading-card" href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">
-        <span class="reading-meta">Medium · recently</span>
-        <span class="reading-title">I Accidentally Made Claude 45% Smarter. Here's How.</span>
-        <p class="reading-take"><span class="reading-take-label">my take</span>Turns out Claude responds to stakes and roles the same way people do. Small prompt tweaks, big output difference — no technical background needed.</p>
-        <span class="reading-link">Read →</span>
-      </a>
+    <div class="content-tabs">
+      <button class="content-tab active" data-tab="read">Read</button>
+      <button class="content-tab" data-tab="watch">Watch</button>
+    </div>
 
-      <a class="reading-card" href="https://writing.nikunjk.com/p/token-anxiety" target="_blank" rel="noopener">
-        <span class="reading-meta">Substack · recently</span>
-        <span class="reading-title">Token Anxiety</span>
-        <p class="reading-take"><span class="reading-take-label">my take</span>He replaced Netflix with Claude Code at night and I felt completely called out. Token anxiety is the new primetime — and the people who lean into it are building an edge that compounds quietly.</p>
-        <span class="reading-link">Read →</span>
-      </a>
+    <div class="tab-panel" id="tab-read">
+      <div class="reading-grid">
 
-      <a class="reading-card" href="https://shumer.dev/something-big-is-happening" target="_blank" rel="noopener">
-        <span class="reading-meta">Essay · recently</span>
-        <span class="reading-title">Something Big Is Happening</span>
-        <p class="reading-take"><span class="reading-take-label">my take</span>Eighty million people read this — most of them still in the "this seems overblown" camp Shumer was writing for. The paragraph about the feedback loop between current AI and next-gen AI kept me up.</p>
-        <span class="reading-link">Read →</span>
-      </a>
+        <a class="reading-card" href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">
+          <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg> Medium · recently</span>
+          <span class="reading-title">I Accidentally Made Claude 45% Smarter. Here's How.</span>
+          <p class="reading-take">Turns out Claude responds to stakes and roles the same way people do. Small prompt tweaks, big output difference — no technical background needed.</p>
+          <span class="reading-link">Read →</span>
+        </a>
 
-      <!-- ✦ drop Lisa a link to generate the next card ✦ -->
+        <a class="reading-card" href="https://writing.nikunjk.com/p/token-anxiety" target="_blank" rel="noopener">
+          <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg> Substack · recently</span>
+          <span class="reading-title">Token Anxiety</span>
+          <p class="reading-take">He replaced Netflix with Claude Code at night and I felt completely called out. Token anxiety is the new primetime — and the people who lean into it are building an edge that compounds quietly.</p>
+          <span class="reading-link">Read →</span>
+        </a>
 
+        <a class="reading-card" href="https://shumer.dev/something-big-is-happening" target="_blank" rel="noopener">
+          <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-1 11H6v-2h12v2zm0-4H6V8h12v2z"/></svg> Essay · recently</span>
+          <span class="reading-title">Something Big Is Happening</span>
+          <p class="reading-take">Eighty million people read this — most of them still in the "this seems overblown" camp Shumer was writing for. The paragraph about the feedback loop between current AI and next-gen AI kept me up.</p>
+          <span class="reading-link">Read →</span>
+        </a>
+
+        <!-- ✦ drop Lisa a read link to generate the next card ✦ -->
+
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-watch" hidden>
+      <div class="reading-grid">
+
+        <a class="reading-card" href="https://www.youtube.com/watch?v=4u94juYwLLM" target="_blank" rel="noopener">
+          <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> Talk · recently</span>
+          <span class="reading-title">Why Design Process Is Failing Designers — Jenny Wen, Anthropic</span>
+          <p class="reading-take">Design Lead at Anthropic, ex-Director of Design at Figma. She makes the case for starting from solutions, trusting intuition, and skipping the process artifacts nobody actually reads. It's the same argument for why the best PMs stop asking "what does the research say" and just know.</p>
+          <span class="reading-link">Watch →</span>
+        </a>
+
+        <!-- ✦ drop Lisa a watch link to generate the next card ✦ -->
+
+      </div>
     </div>
   </div>
 
@@ -483,6 +567,10 @@ a:hover { text-decoration: underline; }
   <div class="corner-block">
     <p class="corner-heading">My Writing</p>
     <ul class="writing-list">
+      <li>
+        <a href="https://lisaqiyali.substack.com/p/10-practical-claude-code-tips-for" target="_blank" rel="noopener">10 Practical Claude Code Tips For Non-Technical Users</a>
+        <span class="corner-source">Substack</span>
+      </li>
       <li>
         <a href="https://www.linkedin.com/posts/lisaqiyali_ai-can-now-build-everything-but-i-bet-you-activity-7430086403079966720-C55d" target="_blank" rel="noopener">AI can now build everything. But I bet you can tell when AI built it...</a>
         <span class="corner-source">LinkedIn</span>
@@ -531,6 +619,20 @@ a:hover { text-decoration: underline; }
 <script>
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+// ─── Content Tabs ───
+document.querySelectorAll('.content-tabs').forEach(tabGroup => {
+  tabGroup.addEventListener('click', e => {
+    const btn = e.target.closest('.content-tab');
+    if (!btn) return;
+    const tab = btn.dataset.tab;
+    tabGroup.querySelectorAll('.content-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tabGroup.closest('.corner-block').querySelectorAll('.tab-panel').forEach(panel => {
+      panel.hidden = panel.id !== `tab-${tab}`;
+    });
+  });
+});
+
 // ─── Scroll Reveal ───
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -542,7 +644,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 // Staggered card groups — each child gets an increasing delay
-document.querySelectorAll('.projects-grid, .people-scroll, .reading-grid, .writing-list').forEach(group => {
+document.querySelectorAll('.projects-grid, .people-grid, .reading-grid, .writing-list').forEach(group => {
   Array.from(group.children).forEach((child, i) => {
     child.classList.add('reveal');
     child.style.transitionDelay = `${i * 0.1}s`;
