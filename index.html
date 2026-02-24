@@ -164,11 +164,24 @@ a:hover { text-decoration: underline; }
 .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* ─── Project Cards ─── */
-/* Featured layout: first card gets full-width 2-column treatment */
-.projects-grid { display: flex; flex-direction: column; gap: 16px; }
+.projects-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* hide scrollbar but keep scroll */
+  scrollbar-width: none;
+}
+.projects-grid::-webkit-scrollbar { display: none; }
 
 .project-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 340px;
   background: var(--card-bg);
   border-radius: 10px;
   padding: 28px;
@@ -176,6 +189,8 @@ a:hover { text-decoration: underline; }
   border-left: 3px solid var(--accent);
   box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
+  scroll-snap-align: start;
+  min-height: 220px;
 }
 .project-card:hover {
   transform: translateY(-4px);
@@ -186,18 +201,19 @@ a:hover { text-decoration: underline; }
   transform: translateX(5px);
 }
 
-/* Featured first card: 2-column grid with accent panel */
+/* Cards with accent panel: stack vertically within card */
 .project-card:first-child {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
 }
 
 .project-card-accent {
-  width: 160px;
+  width: 100%;
   background: var(--accent-light);
   border-radius: 6px;
+  padding: 16px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -455,14 +471,8 @@ a:hover { text-decoration: underline; }
     height: 280px;
     right: -24px;
   }
-  .project-card:first-child {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .project-card-accent {
-    width: 100%;
-    padding: 20px 0;
-  }
+  .project-card { flex: 0 0 280px; }
+  .project-card-accent { padding: 16px 0; }
   .reading-grid {
     grid-template-columns: 1fr;
   }
@@ -502,9 +512,6 @@ a:hover { text-decoration: underline; }
 
   <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="design">Design</button>
-    <button class="filter-btn" data-filter="tool">Tools</button>
-    <button class="filter-btn" data-filter="creative">Creative</button>
   </div>
 
   <div class="projects-grid" id="projects-grid">
@@ -762,15 +769,14 @@ document.querySelectorAll('.reveal').forEach(el => {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.project-card');
 
-// Build filter buttons dynamically from tags
-const allTags = new Set();
-cards.forEach(card => card.dataset.tags.split(',').forEach(t => allTags.add(t.trim())));
+// Build filter buttons — only show curated top-level tags
+const filterLabels = { design: 'Design', tool: 'Tools', creative: 'Creative' };
 const filtersEl = document.getElementById('filters');
-allTags.forEach(tag => {
+Object.entries(filterLabels).forEach(([tag, label]) => {
   const btn = document.createElement('button');
   btn.className = 'filter-btn';
   btn.dataset.filter = tag;
-  btn.textContent = tag;
+  btn.textContent = label;
   filtersEl.appendChild(btn);
 });
 
