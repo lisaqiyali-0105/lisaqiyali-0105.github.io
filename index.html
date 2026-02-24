@@ -99,6 +99,30 @@ body {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  color: var(--text);
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.site-nav.nav-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.site-nav.nav-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.site-nav.nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ─── Contact Section ─── */
 .contact-form {
   display: flex;
@@ -129,7 +153,11 @@ body {
   outline: none;
 }
 .contact-form input:focus,
-.contact-form textarea:focus { border-color: var(--accent); }
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(12,122,88,0.15);
+  outline: none;
+}
 .contact-form textarea { resize: vertical; min-height: 120px; }
 .contact-submit {
   align-self: flex-start;
@@ -553,7 +581,30 @@ a:hover { text-decoration: underline; }
     padding: 104px 24px 0;
   }
   .site-nav-inner { padding: 0 24px; }
-  .nav-links { gap: 16px; }
+
+  /* Hamburger visible, nav links hidden by default */
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 52px; left: 0; right: 0;
+    background: rgba(249,246,241,0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 24px 20px;
+    flex-direction: column;
+    gap: 0;
+  }
+  .site-nav.nav-open .nav-links { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--border); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a {
+    display: block;
+    padding: 14px 0;
+    font-size: 0.95rem;
+  }
+
   .hero {
     flex-direction: column-reverse;
     gap: 32px;
@@ -585,6 +636,9 @@ a:hover { text-decoration: underline; }
 <nav class="site-nav">
   <div class="site-nav-inner">
     <a href="#" class="nav-name">Lisa Qiya Li</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -602,7 +656,7 @@ a:hover { text-decoration: underline; }
   <div class="hero-text">
     <p class="hero-label">Lisa Qiya Li</p>
     <h1 class="hero-title">I build things<br>to learn things.</h1>
-
+    <p class="hero-roles">AI PM · AlphaSense · ex-Morgan Stanley IBD</p>
   </div>
   <div class="hero-photo-wrap">
     <img class="hero-photo" src="lisa-headshot.jpeg" alt="Lisa Qiya Li" width="196" height="196">
@@ -714,13 +768,13 @@ a:hover { text-decoration: underline; }
   <div class="corner-block">
     <p class="corner-heading">Content I'm Consuming</p>
 
-    <div class="content-tabs">
-      <button class="content-tab active" data-tab="read">Read</button>
-      <button class="content-tab" data-tab="watch">Watch</button>
-      <button class="content-tab" data-tab="courses">AI Courses</button>
+    <div class="content-tabs" role="tablist" aria-label="Content I'm Consuming">
+      <button class="content-tab active" role="tab" id="tab-btn-read" aria-selected="true" aria-controls="tab-read" tabindex="0" data-tab="read">Read</button>
+      <button class="content-tab" role="tab" id="tab-btn-watch" aria-selected="false" aria-controls="tab-watch" tabindex="-1" data-tab="watch">Watch</button>
+      <button class="content-tab" role="tab" id="tab-btn-courses" aria-selected="false" aria-controls="tab-courses" tabindex="-1" data-tab="courses">AI Courses</button>
     </div>
 
-    <div class="tab-panel" id="tab-read">
+    <div role="tabpanel" id="tab-read" aria-labelledby="tab-btn-read" class="tab-panel">
       <div class="reading-grid">
 
         <a class="reading-card" href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">
@@ -749,7 +803,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-watch" hidden>
+    <div role="tabpanel" id="tab-watch" aria-labelledby="tab-btn-watch" class="tab-panel" hidden>
       <div class="reading-grid">
 
         <a class="reading-card" href="https://www.youtube.com/watch?v=4u94juYwLLM" target="_blank" rel="noopener">
@@ -764,7 +818,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-courses" hidden>
+    <div role="tabpanel" id="tab-courses" aria-labelledby="tab-btn-courses" class="tab-panel" hidden>
       <div class="reading-grid">
 
         <a class="reading-card" href="https://learn.deeplearning.ai/courses/agent-skills-with-anthropic" target="_blank" rel="noopener">
@@ -882,17 +936,40 @@ window.addEventListener('scroll', () => {
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
 }, { passive: true });
 
-// ─── Content Tabs ───
-document.querySelectorAll('.content-tabs').forEach(tabGroup => {
-  tabGroup.addEventListener('click', e => {
-    const btn = e.target.closest('.content-tab');
-    if (!btn) return;
-    const tab = btn.dataset.tab;
-    tabGroup.querySelectorAll('.content-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    tabGroup.closest('.corner-block').querySelectorAll('.tab-panel').forEach(panel => {
-      panel.hidden = panel.id !== `tab-${tab}`;
+// ─── Content Tabs (ARIA-enhanced) ───
+document.querySelectorAll('.content-tabs').forEach(tabList => {
+  const tabs = Array.from(tabList.querySelectorAll('.content-tab'));
+
+  function activateTab(btn) {
+    tabs.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
     });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.setAttribute('tabindex', '0');
+    tabList.closest('.corner-block').querySelectorAll('.tab-panel').forEach(panel => {
+      panel.hidden = panel.id !== `tab-${btn.dataset.tab}`;
+    });
+  }
+
+  tabList.addEventListener('click', e => {
+    const btn = e.target.closest('.content-tab');
+    if (btn) { activateTab(btn); btn.focus(); }
+  });
+
+  // Arrow key navigation between tabs
+  tabList.addEventListener('keydown', e => {
+    const focused = tabList.querySelector('.content-tab:focus');
+    if (!focused) return;
+    const idx = tabs.indexOf(focused);
+    let next;
+    if (e.key === 'ArrowRight')      next = tabs[(idx + 1) % tabs.length];
+    else if (e.key === 'ArrowLeft')  next = tabs[(idx - 1 + tabs.length) % tabs.length];
+    else if (e.key === 'Home')       next = tabs[0];
+    else if (e.key === 'End')        next = tabs[tabs.length - 1];
+    if (next) { e.preventDefault(); activateTab(next); next.focus(); }
   });
 });
 
@@ -968,6 +1045,35 @@ arrowRight.addEventListener('click', () => grid.scrollBy({ left: 300, behavior: 
 arrowLeft.addEventListener('click', () => grid.scrollBy({ left: -300, behavior: 'smooth' }));
 grid.addEventListener('scroll', updateArrows);
 updateArrows();
+
+// ─── Hamburger Nav ───
+const hamburger = document.getElementById('nav-hamburger');
+const siteNav = document.querySelector('.site-nav');
+
+function closeMenu() {
+  siteNav.classList.remove('nav-open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open menu');
+}
+
+hamburger.addEventListener('click', () => {
+  const isOpen = siteNav.classList.toggle('nav-open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+});
+
+// Close on any nav link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && siteNav.classList.contains('nav-open')) {
+    closeMenu();
+    hamburger.focus();
+  }
+});
 </script>
 
 </body>
