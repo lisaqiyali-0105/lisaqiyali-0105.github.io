@@ -164,15 +164,30 @@ a:hover { text-decoration: underline; }
 .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* ─── Project Cards ─── */
+/* Bleed the scroll track edge-to-edge so the peeking card is clearly cut off */
+.projects-scroll-wrap {
+  position: relative;
+  margin-left: -40px;
+  margin-right: -40px;
+}
+/* Fade on the right edge signals "there's more" */
+.projects-scroll-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 100%;
+  background: linear-gradient(to right, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+
 .projects-grid {
   display: flex;
-  flex-direction: row;
   gap: 16px;
   overflow-x: auto;
-  padding-bottom: 12px;
+  padding: 4px 40px 16px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  /* hide scrollbar but keep scroll */
   scrollbar-width: none;
 }
 .projects-grid::-webkit-scrollbar { display: none; }
@@ -181,16 +196,16 @@ a:hover { text-decoration: underline; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 0 0 340px;
+  flex: 0 0 270px;
   background: var(--card-bg);
   border-radius: 10px;
-  padding: 28px;
+  padding: 24px;
   text-decoration: none;
   border-left: 3px solid var(--accent);
   box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
   scroll-snap-align: start;
-  min-height: 220px;
+  min-height: 200px;
 }
 .project-card:hover {
   transform: translateY(-4px);
@@ -199,43 +214,6 @@ a:hover { text-decoration: underline; }
 }
 .project-card:hover .project-link {
   transform: translateX(5px);
-}
-
-/* Cards with accent panel: stack vertically within card */
-.project-card:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 28px;
-}
-
-.project-card-accent {
-  width: 100%;
-  background: var(--accent-light);
-  border-radius: 6px;
-  padding: 16px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.project-card-stat {
-  font-family: var(--ff-display);
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: var(--accent);
-  text-align: center;
-  line-height: 1.1;
-}
-.project-card-stat span {
-  display: block;
-  font-family: var(--ff-body);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-top: 4px;
 }
 
 .project-meta { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -471,8 +449,9 @@ a:hover { text-decoration: underline; }
     height: 280px;
     right: -24px;
   }
-  .project-card { flex: 0 0 280px; }
-  .project-card-accent { padding: 16px 0; }
+  .projects-scroll-wrap { margin-left: -24px; margin-right: -24px; }
+  .projects-grid { padding-left: 24px; padding-right: 24px; }
+  .project-card { flex: 0 0 240px; }
   .reading-grid {
     grid-template-columns: 1fr;
   }
@@ -514,50 +493,40 @@ a:hover { text-decoration: underline; }
     <button class="filter-btn active" data-filter="all">All</button>
   </div>
 
+  <div class="projects-scroll-wrap">
   <div class="projects-grid" id="projects-grid">
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/design-language-course/" target="_blank" rel="noopener" data-tags="design,learning">
-      <div class="project-card-inner">
-        <div class="project-meta">
-          <span class="project-tag">design</span>
-          <span class="project-tag">learning</span>
-        </div>
-        <h3 class="project-title">The Language of Design</h3>
-        <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
-        <span class="project-link">Explore →</span>
+      <div class="project-meta">
+        <span class="project-tag">design</span>
+        <span class="project-tag">learning</span>
       </div>
-      <div class="project-card-accent" aria-hidden="true">
-        <div class="project-card-stat">10<span>modules</span></div>
-      </div>
+      <h3 class="project-title">The Language of Design</h3>
+      <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
+      <span class="project-link">Explore →</span>
     </a>
 
     <a class="project-card" href="https://github.com/lisaqiyali-0105/focus-tracker" target="_blank" rel="noopener" data-tags="tool,python">
-      <div class="project-card-inner">
-        <div class="project-meta">
-          <span class="project-tag">tool</span>
-          <span class="project-tag">python</span>
-        </div>
-        <h3 class="project-title">Focus Tracker</h3>
-        <p class="project-desc">A macOS app that watches every app switch and turns it into a focus score. Built because I kept ending the day feeling busy with no idea where the time went. Runs locally — no cloud, no manual input.</p>
-        <span class="project-link">View on GitHub →</span>
+      <div class="project-meta">
+        <span class="project-tag">tool</span>
+        <span class="project-tag">python</span>
       </div>
-      <div class="project-card-accent" aria-hidden="true">
-        <div class="project-card-stat">0–100<span>focus score</span></div>
-      </div>
+      <h3 class="project-title">Focus Tracker</h3>
+      <p class="project-desc">A macOS app that watches every app switch and turns it into a focus score. Built because I kept ending the day feeling busy with no idea where the time went. Runs locally — no cloud, no manual input.</p>
+      <span class="project-link">View on GitHub →</span>
     </a>
 
     <a class="project-card" href="https://do-not-answer.netlify.app/" target="_blank" rel="noopener" data-tags="creative,gift">
-      <div class="project-card-inner">
-        <div class="project-meta">
-          <span class="project-tag">creative</span>
-          <span class="project-tag">gift</span>
-        </div>
-        <h3 class="project-title">Do Not Answer</h3>
-        <p class="project-desc">A Three Body Problem–themed puzzle challenge, vibe-coded as a birthday gift for my husband — with a secret message hidden inside gently nudging him to adopt AI tools.</p>
-        <span class="project-link">Explore →</span>
+      <div class="project-meta">
+        <span class="project-tag">creative</span>
+        <span class="project-tag">gift</span>
       </div>
+      <h3 class="project-title">Do Not Answer</h3>
+      <p class="project-desc">A Three Body Problem–themed puzzle challenge, vibe-coded as a birthday gift for my husband — with a secret message hidden inside gently nudging him to adopt AI tools.</p>
+      <span class="project-link">Explore →</span>
     </a>
 
+  </div>
   </div>
 </section>
 
