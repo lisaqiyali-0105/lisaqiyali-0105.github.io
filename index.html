@@ -28,7 +28,7 @@
   --border: #E0D9CE;
   --text: #1E1C19;
   --text-2: #5C5852;
-  --text-3: #9E9890;
+  --text-3: #6D6862;
   --accent: #0D9B72;
   --accent-light: rgba(13,155,114,0.08);
   --card-bg: #FDFCFA;
@@ -175,12 +175,11 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
   border-left: 3px solid var(--accent);
   box-shadow: 0 2px 20px rgba(30,28,25,0.08), 0 1px 4px rgba(30,28,25,0.04);
-  transition: transform 0.24s ease, box-shadow 0.24s ease, border-left-width 0.2s ease;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(30,28,25,0.11), 0 4px 10px rgba(30,28,25,0.06);
-  border-left-width: 6px;
   text-decoration: none;
 }
 .project-card:hover .project-link {
@@ -411,6 +410,66 @@ a:hover { text-decoration: underline; }
 .social-icons { display: flex; gap: 18px; align-items: center; }
 .social-icon { color: var(--text-3); display: flex; align-items: center; transition: color 0.18s; }
 .social-icon:hover { color: var(--accent); text-decoration: none; }
+
+/* ─── Focus States ─── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.project-card:focus-visible,
+.person-card:focus-visible,
+.reading-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob { animation: none; }
+  .hero { animation: none; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 640px) {
+  body {
+    padding: 48px 24px 0;
+  }
+  .hero {
+    flex-direction: column-reverse;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 64px;
+  }
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+  }
+  .hero-blob {
+    width: 280px;
+    height: 280px;
+    right: -24px;
+  }
+  .project-card:first-child {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .project-card-accent {
+    width: 100%;
+    padding: 20px 0;
+  }
+  .reading-grid {
+    grid-template-columns: 1fr;
+  }
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
