@@ -181,6 +181,27 @@ a:hover { text-decoration: underline; }
   z-index: 1;
 }
 
+.scroll-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(13,155,114,0.35);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.scroll-arrow:hover { transform: translateY(-50%) scale(1.08); }
+.scroll-arrow.hidden { opacity: 0; pointer-events: none; }
+
 .projects-grid {
   display: flex;
   gap: 16px;
@@ -494,6 +515,9 @@ a:hover { text-decoration: underline; }
   </div>
 
   <div class="projects-scroll-wrap">
+  <button class="scroll-arrow" id="scroll-arrow" aria-label="Scroll projects">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
   <div class="projects-grid" id="projects-grid">
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/design-language-course/" target="_blank" rel="noopener" data-tags="design,learning">
@@ -760,6 +784,19 @@ filtersEl.addEventListener('click', e => {
     card.style.display = (filter === 'all' || tags.includes(filter)) ? 'block' : 'none';
   });
 });
+
+// Scroll arrow
+const grid = document.getElementById('projects-grid');
+const arrow = document.getElementById('scroll-arrow');
+function updateArrow() {
+  const atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 8;
+  arrow.classList.toggle('hidden', atEnd);
+}
+arrow.addEventListener('click', () => {
+  grid.scrollBy({ left: 300, behavior: 'smooth' });
+});
+grid.addEventListener('scroll', updateArrow);
+updateArrow();
 </script>
 
 </body>
