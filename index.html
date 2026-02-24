@@ -500,9 +500,11 @@ a:hover { text-decoration: underline; }
 <section class="section" id="projects">
   <h2 class="section-title">Projects</h2>
 
-  <!-- Filter bar — hidden via CSS until 3+ projects exist. Remove 'filters-hidden' class to enable. -->
-  <div class="filters filters-hidden" id="filters">
+  <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+    <button class="filter-btn" data-filter="tool">Tools</button>
+    <button class="filter-btn" data-filter="creative">Creative</button>
   </div>
 
   <div class="projects-grid" id="projects-grid">
@@ -519,6 +521,21 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="project-card-accent" aria-hidden="true">
         <div class="project-card-stat">10<span>modules</span></div>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/lisaqiyali-0105/focus-tracker" target="_blank" rel="noopener" data-tags="tool,python">
+      <div class="project-card-inner">
+        <div class="project-meta">
+          <span class="project-tag">tool</span>
+          <span class="project-tag">python</span>
+        </div>
+        <h3 class="project-title">Focus Tracker</h3>
+        <p class="project-desc">A macOS app that watches every app switch and turns it into a focus score. Built because I kept ending the day feeling busy with no idea where the time went. Runs locally — no cloud, no manual input.</p>
+        <span class="project-link">View on GitHub →</span>
+      </div>
+      <div class="project-card-accent" aria-hidden="true">
+        <div class="project-card-stat">0–100<span>focus score</span></div>
       </div>
     </a>
 
