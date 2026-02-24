@@ -586,6 +586,7 @@ a:hover { text-decoration: underline; }
   <div class="site-nav-inner">
     <a href="#" class="nav-name">Lisa Qiya Li</a>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#ai-corner">AI Corner</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -870,7 +871,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     }
   });
 });
-const navSections = ['projects', 'ai-corner', 'contact'];
+const navSections = ['about', 'projects', 'ai-corner', 'contact'];
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
