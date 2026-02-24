@@ -180,7 +180,6 @@ a:hover { text-decoration: underline; }
 
 .scroll-arrow {
   position: absolute;
-  right: 8px;
   top: 50%;
   transform: translateY(-60%);
   z-index: 2;
@@ -196,6 +195,8 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 2px 12px rgba(13,155,114,0.35);
   transition: opacity 0.2s, transform 0.2s;
 }
+.scroll-arrow-right { right: 8px; }
+.scroll-arrow-left  { left: 8px; }
 .scroll-arrow:hover { transform: translateY(-60%) scale(1.08); }
 .scroll-arrow.hidden { opacity: 0; pointer-events: none; }
 
@@ -510,7 +511,10 @@ a:hover { text-decoration: underline; }
   </div>
 
   <div class="projects-scroll-wrap">
-  <button class="scroll-arrow" id="scroll-arrow" aria-label="Scroll projects">
+  <button class="scroll-arrow scroll-arrow-left hidden" id="scroll-left" aria-label="Scroll left">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3l-5 5 5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="scroll-arrow scroll-arrow-right" id="scroll-right" aria-label="Scroll right">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
   <div class="projects-grid" id="projects-grid">
@@ -780,18 +784,18 @@ filtersEl.addEventListener('click', e => {
   });
 });
 
-// Scroll arrow
+// Scroll arrows
 const grid = document.getElementById('projects-grid');
-const arrow = document.getElementById('scroll-arrow');
-function updateArrow() {
-  const atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 8;
-  arrow.classList.toggle('hidden', atEnd);
+const arrowRight = document.getElementById('scroll-right');
+const arrowLeft = document.getElementById('scroll-left');
+function updateArrows() {
+  arrowLeft.classList.toggle('hidden', grid.scrollLeft <= 8);
+  arrowRight.classList.toggle('hidden', grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 8);
 }
-arrow.addEventListener('click', () => {
-  grid.scrollBy({ left: 300, behavior: 'smooth' });
-});
-grid.addEventListener('scroll', updateArrow);
-updateArrow();
+arrowRight.addEventListener('click', () => grid.scrollBy({ left: 300, behavior: 'smooth' }));
+arrowLeft.addEventListener('click', () => grid.scrollBy({ left: -300, behavior: 'smooth' }));
+grid.addEventListener('scroll', updateArrows);
+updateArrows();
 </script>
 
 </body>
