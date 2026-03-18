@@ -41,7 +41,7 @@
 /* ─── Reset & Base ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   background: var(--bg);
@@ -51,42 +51,57 @@ body {
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
-  padding: 120px 40px 0;
+  padding: 90px 40px 0;
 }
 
-/* ─── Global Nav ─── */
+/* ─── Global Nav — iOS glass pill ─── */
 .site-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(249,246,241,0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding-top: 16px;
+  pointer-events: none;
 }
 .site-nav-inner {
-  width: 100%;
-  max-width: 800px;
-  padding: 0 40px;
-  height: 52px;
+  pointer-events: all;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2px;
+  /* iOS glass: low opacity + saturate boosts vibrancy of content behind */
+  background: rgba(250,247,243,0.62);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  /* Bright border = glass edge catching light */
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 100px;
+  /* Layered shadows: ambient depth + bottom diffuse + top-edge inset highlight */
+  box-shadow:
+    0 8px 32px rgba(30,28,25,0.11),
+    0 2px 8px rgba(30,28,25,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.72);
+  padding: 5px 6px 5px 18px;
+  width: auto;
+  max-width: none;
+  height: auto;
 }
 .nav-name {
   font-family: var(--ff-display);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--text);
   text-decoration: none;
   letter-spacing: 0.01em;
+  padding-right: 14px;
+  margin-right: 4px;
+  /* Semi-transparent divider — matches glass aesthetic */
+  border-right: 1px solid rgba(30,28,25,0.12);
+  white-space: nowrap;
 }
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 2px;
   list-style: none;
 }
 .nav-links a {
@@ -95,9 +110,28 @@ body {
   color: var(--text-2);
   text-decoration: none;
   letter-spacing: 0.03em;
-  transition: color 0.15s;
+  padding: 7px 14px;
+  border-radius: 100px;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
 }
-.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+/* Hover: very faint warm tint */
+.nav-links a:hover {
+  background: rgba(255,255,255,0.45);
+  color: var(--text);
+}
+/* Active: white frosted chip elevated above the glass surface — iOS tab bar style */
+.nav-links a.active {
+  background: rgba(255,255,255,0.88);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow:
+    0 2px 8px rgba(30,28,25,0.10),
+    0 1px 2px rgba(30,28,25,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
 
 /* Hamburger button — hidden on desktop */
 .nav-hamburger {
@@ -578,31 +612,39 @@ a:hover { text-decoration: underline; }
 /* ─── Mobile ─── */
 @media (max-width: 640px) {
   body {
-    padding: 104px 24px 0;
+    padding: 84px 24px 0;
   }
-  .site-nav-inner { padding: 0 24px; }
+
+  /* Glass pill narrows to rounded rectangle on mobile */
+  .site-nav { padding-top: 12px; align-items: flex-start; }
+  .site-nav-inner {
+    border-radius: 20px;
+    padding: 8px 8px 8px 16px;
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
 
   /* Hamburger visible, nav links hidden by default */
   .nav-hamburger { display: flex; }
   .nav-links {
     display: none;
-    position: absolute;
-    top: 52px; left: 0; right: 0;
-    background: rgba(249,246,241,0.97);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 8px 24px 20px;
+    width: 100%;
+    padding: 8px 0 4px;
     flex-direction: column;
-    gap: 0;
+    gap: 2px;
   }
   .site-nav.nav-open .nav-links { display: flex; }
-  .nav-links li { border-bottom: 1px solid var(--border); }
-  .nav-links li:last-child { border-bottom: none; }
+  .nav-links li { border: none; }
   .nav-links a {
     display: block;
-    padding: 14px 0;
-    font-size: 0.95rem;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+  }
+  /* Active chip on mobile: same white elevated chip */
+  .nav-links a.active {
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 2px 8px rgba(30,28,25,0.10), 0 1px 2px rgba(30,28,25,0.06);
   }
 
   .hero {
@@ -695,6 +737,16 @@ a:hover { text-decoration: underline; }
       </div>
       <h3 class="project-title">The Language of Design</h3>
       <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
+      <span class="project-link">Explore →</span>
+    </a>
+
+    <a class="project-card" href="https://lisaqiyali-0105.github.io/pm-career-course/" target="_blank" rel="noopener" data-tags="pm,learning">
+      <div class="project-meta">
+        <span class="project-tag">pm</span>
+        <span class="project-tag">learning</span>
+      </div>
+      <h3 class="project-title">So You Want to Be a PM</h3>
+      <p class="project-desc">A 10-module interactive course for career switchers breaking into product management — discovery, PRDs, working with engineers, influence, GTM, and more. No fluff, real frameworks.</p>
       <span class="project-link">Explore →</span>
     </a>
 
