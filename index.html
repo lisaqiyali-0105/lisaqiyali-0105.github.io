@@ -402,6 +402,9 @@ a:hover { text-decoration: underline; }
 .project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
 .project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; display: inline-block; transition: transform 0.2s ease; }
 
+.project-icon { width: 40px; height: 40px; margin-bottom: 14px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 9px; flex-shrink: 0; }
+.project-icon svg { width: 22px; height: 22px; color: var(--accent); }
+
 .corner-block { margin-bottom: 52px; }
 .corner-heading {
   font-size: 0.75rem;
@@ -731,6 +734,14 @@ a:hover { text-decoration: underline; }
   <div class="projects-grid" id="projects-grid">
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/design-language-course/" target="_blank" rel="noopener" data-tags="design,learning">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12C5 6 9 4 12 4C15 4 19 6 22 12C19 18 15 20 12 20C9 20 5 18 2 12Z"/>
+          <circle cx="12" cy="12" r="3"/>
+          <line x1="9" y1="12" x2="15" y2="12" stroke-width="1" opacity="0.45"/>
+          <line x1="12" y1="9" x2="12" y2="15" stroke-width="1" opacity="0.45"/>
+        </svg>
+      </div>
       <div class="project-meta">
         <span class="project-tag">design</span>
         <span class="project-tag">learning</span>
@@ -741,6 +752,15 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/pm-career-course/" target="_blank" rel="noopener" data-tags="pm,learning">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 3V5M12 19V21M3 12H5M19 12H21" stroke-width="1" opacity="0.4"/>
+          <path d="M12 5L14 10.5L12 12L10 10.5Z" fill="currentColor" stroke="none"/>
+          <path d="M12 19L10 13.5L12 12L14 13.5Z" fill="currentColor" stroke="none" opacity="0.3"/>
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
       <div class="project-meta">
         <span class="project-tag">pm</span>
         <span class="project-tag">learning</span>
@@ -750,9 +770,16 @@ a:hover { text-decoration: underline; }
       <span class="project-link">Explore →</span>
     </a>
 
-    <a class="project-card" href="https://github.com/lisaqiyali-0105/focus-tracker" target="_blank" rel="noopener" data-tags="tool,python">
+    <a class="project-card" href="https://github.com/lisaqiyali-0105/focus-tracker" target="_blank" rel="noopener" data-tags="skill,python">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
       <div class="project-meta">
-        <span class="project-tag">tool</span>
+        <span class="project-tag">skill</span>
         <span class="project-tag">python</span>
       </div>
       <h3 class="project-title">Focus Tracker</h3>
@@ -760,9 +787,22 @@ a:hover { text-decoration: underline; }
       <span class="project-link">View on GitHub →</span>
     </a>
 
-    <a class="project-card" href="https://github.com/lisaqiyali-0105/video2gif" target="_blank" rel="noopener" data-tags="tool,python">
+    <a class="project-card" href="https://github.com/lisaqiyali-0105/video2gif" target="_blank" rel="noopener" data-tags="skill,python">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="10" height="10" rx="1.5"/>
+          <line x1="4.5" y1="7" x2="4.5" y2="5" stroke-width="1.2"/>
+          <line x1="7" y1="7" x2="7" y2="5" stroke-width="1.2"/>
+          <line x1="9.5" y1="7" x2="9.5" y2="5" stroke-width="1.2"/>
+          <line x1="4.5" y1="17" x2="4.5" y2="19" stroke-width="1.2"/>
+          <line x1="7" y1="17" x2="7" y2="19" stroke-width="1.2"/>
+          <line x1="9.5" y1="17" x2="9.5" y2="19" stroke-width="1.2"/>
+          <path d="M14 12H18M16.5 10L18.5 12L16.5 14"/>
+          <rect x="19" y="8.5" width="3" height="7" rx="1"/>
+        </svg>
+      </div>
       <div class="project-meta">
-        <span class="project-tag">tool</span>
+        <span class="project-tag">skill</span>
         <span class="project-tag">python</span>
       </div>
       <h3 class="project-title">video2gif</h3>
@@ -770,9 +810,15 @@ a:hover { text-decoration: underline; }
       <span class="project-link">View on GitHub →</span>
     </a>
 
-    <a class="project-card" href="https://github.com/lisaqiyali-0105/ask-like-pm" target="_blank" rel="noopener" data-tags="tool,pm">
+    <a class="project-card" href="https://github.com/lisaqiyali-0105/ask-like-pm" target="_blank" rel="noopener" data-tags="skill,pm">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          <path d="M8 11l2 2 4-4" stroke-width="1.5"/>
+        </svg>
+      </div>
       <div class="project-meta">
-        <span class="project-tag">tool</span>
+        <span class="project-tag">skill</span>
         <span class="project-tag">pm</span>
       </div>
       <h3 class="project-title">ask-like-pm</h3>
@@ -780,9 +826,17 @@ a:hover { text-decoration: underline; }
       <span class="project-link">View on GitHub →</span>
     </a>
 
-    <a class="project-card" href="https://github.com/lisaqiyali-0105/question-behind-the-question" target="_blank" rel="noopener" data-tags="tool,pm">
+    <a class="project-card" href="https://github.com/lisaqiyali-0105/question-behind-the-question" target="_blank" rel="noopener" data-tags="skill,pm">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" opacity="0.25"/>
+          <circle cx="12" cy="12" r="6"/>
+          <path d="M10.5 9.5a2 2 0 114 0c0 1.5-2.5 1.5-2.5 3" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
       <div class="project-meta">
-        <span class="project-tag">tool</span>
+        <span class="project-tag">skill</span>
         <span class="project-tag">pm</span>
       </div>
       <h3 class="project-title">question-behind-the-question</h3>
@@ -791,6 +845,14 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://do-not-answer.netlify.app/" target="_blank" rel="noopener" data-tags="creative,gift">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="11" width="14" height="11" rx="2"/>
+          <path d="M8 11V7a4 4 0 018 0v4"/>
+          <circle cx="12" cy="16.5" r="1.5" fill="currentColor" stroke="none"/>
+          <line x1="12" y1="18" x2="12" y2="20" stroke-width="1.5"/>
+        </svg>
+      </div>
       <div class="project-meta">
         <span class="project-tag">creative</span>
         <span class="project-tag">gift</span>
@@ -1089,7 +1151,7 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.project-card');
 
 // Build filter buttons — only show curated top-level tags
-const filterLabels = { learning: 'Learning', pm: 'PM', tool: 'Tools', design: 'Design', creative: 'Creative' };
+const filterLabels = { learning: 'Learning', pm: 'PM', skill: 'Skills', design: 'Design', creative: 'Creative' };
 const filtersEl = document.getElementById('filters');
 Object.entries(filterLabels).forEach(([tag, label]) => {
   const btn = document.createElement('button');
