@@ -4,6 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lisa Qiya Li — Builder</title>
+<meta name="description" content="PM, builder, and creator. Interactive courses, Claude Code skills, and tools for people who think in systems.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lisaqiyali-0105.github.io/">
+<meta property="og:title" content="Lisa Qiya Li — Builder">
+<meta property="og:description" content="PM, builder, and creator. Interactive courses, Claude Code skills, and tools for people who think in systems.">
+<meta property="og:image" content="https://lisaqiyali-0105.github.io/og-image.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lisa Qiya Li — Builder">
+<meta name="twitter:description" content="PM, builder, and creator. Interactive courses, Claude Code skills, and tools for people who think in systems.">
+<meta name="twitter:image" content="https://lisaqiyali-0105.github.io/og-image.jpg">
 
 <!-- SEO -->
 <meta name="description" content="Lisa Qiya Li — AI PM, builder, closing the gap between product thinking and technical execution.">
@@ -375,8 +393,8 @@ a:hover { text-decoration: underline; }
 .project-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   flex: 0 0 270px;
+  overflow: hidden;
   background: var(--card-bg);
   border-radius: 10px;
   padding: 24px;
@@ -386,6 +404,7 @@ a:hover { text-decoration: underline; }
   transition: transform 0.24s ease, box-shadow 0.24s ease;
   scroll-snap-align: start;
   min-height: 200px;
+  padding-bottom: 52px;
 }
 .project-card:hover {
   transform: translateY(-4px);
@@ -400,10 +419,10 @@ a:hover { text-decoration: underline; }
 .project-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 3px 8px; border-radius: 3px; }
 .project-title { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 500; color: var(--text); margin-bottom: 10px; line-height: 1.25; }
 .project-desc { font-size: 0.86rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
-.project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; display: inline-block; transition: transform 0.2s ease; }
+.project-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; position: absolute; bottom: 22px; right: 22px; transition: transform 0.2s ease; }
 
-.project-icon { width: 40px; height: 40px; margin-bottom: 14px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 9px; flex-shrink: 0; }
-.project-icon svg { width: 22px; height: 22px; color: var(--accent); }
+.project-wm { position: absolute; bottom: -28px; left: -28px; width: 100px; height: 100px; color: var(--accent); opacity: 0.13; pointer-events: none; }
+.project-wm svg { width: 100px; height: 100px; }
 
 .corner-block { margin-bottom: 52px; }
 .corner-heading {
@@ -734,17 +753,11 @@ a:hover { text-decoration: underline; }
   <div class="projects-grid" id="projects-grid">
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/design-language-course/" target="_blank" rel="noopener" data-tags="design,learning">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 12C5 6 9 4 12 4C15 4 19 6 22 12C19 18 15 20 12 20C9 20 5 18 2 12Z"/>
-          <circle cx="12" cy="12" r="3"/>
-          <line x1="9" y1="12" x2="15" y2="12" stroke-width="1" opacity="0.45"/>
-          <line x1="12" y1="9" x2="12" y2="15" stroke-width="1" opacity="0.45"/>
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="14" cy="14" r="9"/>
+          <rect x="1" y="1" width="11" height="11" rx="1.5"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">design</span>
-        <span class="project-tag">learning</span>
       </div>
       <h3 class="project-title">The Language of Design</h3>
       <p class="project-desc">A PM's interactive course in design vocabulary — 10 modules, real visual examples, no fluff.</p>
@@ -752,18 +765,14 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://lisaqiyali-0105.github.io/pm-career-course/" target="_blank" rel="noopener" data-tags="pm,learning">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
-          <path d="M12 3V5M12 19V21M3 12H5M19 12H21" stroke-width="1" opacity="0.4"/>
+          <path d="M12 3V5M12 19V21M3 12H5M19 12H21" stroke-width="0.6" opacity="0.6"/>
           <path d="M12 5L14 10.5L12 12L10 10.5Z" fill="currentColor" stroke="none"/>
-          <path d="M12 19L10 13.5L12 12L14 13.5Z" fill="currentColor" stroke="none" opacity="0.3"/>
+          <path d="M12 19L10 13.5L12 12L14 13.5Z" fill="currentColor" stroke="none" opacity="0.4"/>
           <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">pm</span>
-        <span class="project-tag">learning</span>
       </div>
       <h3 class="project-title">So You Want to Be a PM</h3>
       <p class="project-desc">A 10-module interactive course for career switchers breaking into product management — discovery, PRDs, working with engineers, influence, GTM, and more. No fluff, real frameworks.</p>
@@ -771,16 +780,12 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://github.com/lisaqiyali-0105/focus-tracker" target="_blank" rel="noopener" data-tags="skill,python">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <circle cx="12" cy="12" r="6"/>
           <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">skill</span>
-        <span class="project-tag">python</span>
       </div>
       <h3 class="project-title">Focus Tracker</h3>
       <p class="project-desc">A macOS app that watches every app switch and turns it into a focus score. Built because I kept ending the day feeling busy with no idea where the time went. Runs locally — no cloud, no manual input.</p>
@@ -788,22 +793,13 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://github.com/lisaqiyali-0105/video2gif" target="_blank" rel="noopener" data-tags="skill,python">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="7" width="10" height="10" rx="1.5"/>
-          <line x1="4.5" y1="7" x2="4.5" y2="5" stroke-width="1.2"/>
-          <line x1="7" y1="7" x2="7" y2="5" stroke-width="1.2"/>
-          <line x1="9.5" y1="7" x2="9.5" y2="5" stroke-width="1.2"/>
-          <line x1="4.5" y1="17" x2="4.5" y2="19" stroke-width="1.2"/>
-          <line x1="7" y1="17" x2="7" y2="19" stroke-width="1.2"/>
-          <line x1="9.5" y1="17" x2="9.5" y2="19" stroke-width="1.2"/>
-          <path d="M14 12H18M16.5 10L18.5 12L16.5 14"/>
-          <rect x="19" y="8.5" width="3" height="7" rx="1"/>
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="7" width="11" height="10" rx="1.5"/>
+          <polygon points="16 7 12 10 12 14 16 17"/>
+          <line x1="18" y1="12" x2="23" y2="12"/>
+          <polyline points="21 10 23 12 21 14"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">skill</span>
-        <span class="project-tag">python</span>
       </div>
       <h3 class="project-title">video2gif</h3>
       <p class="project-desc">A Claude Code skill that converts screen recordings into email-friendly GIFs. 2-pass palette generation for quality, auto file-size warnings, and sensible defaults so you don't have to think about ffmpeg flags.</p>
@@ -811,15 +807,13 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://github.com/lisaqiyali-0105/ask-like-pm" target="_blank" rel="noopener" data-tags="skill,pm">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          <path d="M8 11l2 2 4-4" stroke-width="1.5"/>
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 1C2.9 1 2 1.9 2 3V12C2 13.1 2.9 14 4 14H6V23L13 14H20C21.1 14 22 13.1 22 12V3C22 1.9 21.1 1 20 1H4Z"/>
+          <circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="8" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">skill</span>
-        <span class="project-tag">pm</span>
       </div>
       <h3 class="project-title">ask-like-pm</h3>
       <p class="project-desc">A Claude Code skill that diagnoses PM stakeholder messages and rewrites them to sound collaborative and confident — not directive or permission-seeking. Catches 6 common patterns and explains what changed so you internalize the language over time.</p>
@@ -827,17 +821,13 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://github.com/lisaqiyali-0105/question-behind-the-question" target="_blank" rel="noopener" data-tags="skill,pm">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10" opacity="0.25"/>
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" opacity="0.35"/>
           <circle cx="12" cy="12" r="6"/>
-          <path d="M10.5 9.5a2 2 0 114 0c0 1.5-2.5 1.5-2.5 3" stroke-linecap="round"/>
+          <path d="M10.5 9.5a2 2 0 114 0c0 1.5-2.5 1.5-2.5 3"/>
           <circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">skill</span>
-        <span class="project-tag">pm</span>
       </div>
       <h3 class="project-title">question-behind-the-question</h3>
       <p class="project-desc">A framework for executive communication that actually lands. Every question has a surface layer and a deeper concern — this teaches you to identify it, address it proactively, and stop the endless follow-up cycle. Adapted from Wes Kao.</p>
@@ -845,17 +835,15 @@ a:hover { text-decoration: underline; }
     </a>
 
     <a class="project-card" href="https://do-not-answer.netlify.app/" target="_blank" rel="noopener" data-tags="creative,gift">
-      <div class="project-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="5" y="11" width="14" height="11" rx="2"/>
-          <path d="M8 11V7a4 4 0 018 0v4"/>
-          <circle cx="12" cy="16.5" r="1.5" fill="currentColor" stroke="none"/>
-          <line x1="12" y1="18" x2="12" y2="20" stroke-width="1.5"/>
+      <div class="project-wm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="14" rx="1"/>
+          <line x1="3" y1="13" x2="21" y2="13"/>
+          <path d="M12 8V22"/>
+          <path d="M8 8C8 8 8 4 12 4C16 4 16 8 16 8"/>
+          <path d="M12 4C12 4 10 2 8.5 3S8 6 10 7"/>
+          <path d="M12 4C12 4 14 2 15.5 3S16 6 14 7"/>
         </svg>
-      </div>
-      <div class="project-meta">
-        <span class="project-tag">creative</span>
-        <span class="project-tag">gift</span>
       </div>
       <h3 class="project-title">Do Not Answer</h3>
       <p class="project-desc">A Three Body Problem–themed puzzle challenge, vibe-coded as a birthday gift for my husband — with a secret message hidden inside gently nudging him to adopt AI tools.</p>
