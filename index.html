@@ -135,10 +135,35 @@ body {
   white-space: nowrap;
   position: relative;
 }
-/* Hover: very faint warm tint */
-.nav-links a:hover {
-  background: rgba(255,255,255,0.45);
+/* Hover: squiggly underline draw-in */
+.nav-links a:hover,
+.nav-name:hover {
+  background: transparent;
   color: var(--text);
+  text-decoration: none;
+}
+.nav-links a .squiggle {
+  position: absolute;
+  bottom: -1px;
+  left: 14px;
+  width: calc(100% - 28px);
+  height: 8px;
+  overflow: visible;
+  pointer-events: none;
+}
+.nav-links a .squiggle path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  opacity: 0;
+  transition: stroke-dashoffset 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0s;
+}
+.nav-links a:hover .squiggle path {
+  stroke-dashoffset: 0;
+  opacity: 1;
 }
 /* Active: white frosted chip elevated above the glass surface — iOS tab bar style */
 .nav-links a.active {
@@ -276,9 +301,9 @@ a:hover { text-decoration: underline; }
   display: block;
   box-shadow:
     0 6px 24px rgba(30,28,25,0.13),
-    0 2px 8px rgba(30,28,25,0.08);
-  outline: 2px solid rgba(13,155,114,0.3);
-  outline-offset: 5px;
+    0 2px 8px rgba(30,28,25,0.08),
+    0 0 0 6px rgba(13,155,114,0.12),
+    0 0 18px 4px rgba(13,155,114,0.15);
 }
 
 /* ─── About ─── */
@@ -699,15 +724,14 @@ a:hover { text-decoration: underline; }
 <!-- ─── Nav ─── -->
 <nav class="site-nav">
   <div class="site-nav-inner">
-    <a href="#" class="nav-name">Lisa Qiya Li</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#ai-corner">AI Corner</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About<svg class="squiggle" viewBox="0 0 60 8" preserveAspectRatio="none"><path d="M 2,5 Q 15,2 30,5 Q 45,8 58,5"/></svg></a></li>
+      <li><a href="#projects">Projects<svg class="squiggle" viewBox="0 0 60 8" preserveAspectRatio="none"><path d="M 2,5 Q 15,2 30,5 Q 45,8 58,5"/></svg></a></li>
+      <li><a href="#ai-corner">AI Corner<svg class="squiggle" viewBox="0 0 60 8" preserveAspectRatio="none"><path d="M 2,5 Q 15,2 30,5 Q 45,8 58,5"/></svg></a></li>
+      <li><a href="#contact">Contact<svg class="squiggle" viewBox="0 0 60 8" preserveAspectRatio="none"><path d="M 2,5 Q 15,2 30,5 Q 45,8 58,5"/></svg></a></li>
     </ul>
   </div>
 </nav>
@@ -923,6 +947,13 @@ a:hover { text-decoration: underline; }
           <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-1 11H6v-2h12v2zm0-4H6V8h12v2z"/></svg> OpenAI · Feb 2026</span>
           <span class="reading-title">Harness Engineering: Leveraging Codex in an Agent-First World</span>
           <p class="reading-take">OpenAI's team built a real product with 0 lines of code written by a human. The lesson isn't about coding. When execution gets automated, every job shifts the same way: you stop being the one who does the work. You become the one who designs the environment where good work happens. Judgment, taste, and the ability to define what "right" looks like. That's the new bottleneck.</p>
+          <span class="reading-link">Read →</span>
+        </a>
+
+        <a class="reading-card" href="https://claude.com/blog/product-management-on-the-ai-exponential" target="_blank" rel="noopener">
+          <span class="reading-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-1 11H6v-2h12v2zm0-4H6V8h12v2z"/></svg> Anthropic · recently</span>
+          <span class="reading-title">Product Management on the AI Exponential</span>
+          <p class="reading-take">Anthropic's take on what PM actually means when the rate of change is non-linear. The part about taste and judgment becoming the scarce resource — not execution — landed. Everyone can ship faster now. The question is who's deciding what's worth shipping.</p>
           <span class="reading-link">Read →</span>
         </a>
 
